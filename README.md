@@ -7,13 +7,10 @@ The goal of the event is to spark innovation on Voice-enabled technologies for t
 
 ## Prizes
 
-This hackathon is a competition, and the top two teams will be awarded prizes.
+This hackathon is a competition, and the top two teams will be awarded prizes. Teams should not have more than five people.
 
-Each member of the top team will be awarded a [Raspberry Pi 3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), along with a 16G micro SD card.
-
-Each member of the second team will be awarded a [mirco:bit](https://tech.microbit.org/hardware/) computer, along with a 16G micro SD card.
-
-Teams should not have more than five people.
+- Each member of the top team will be awarded a [Raspberry Pi 3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), along with a 16G micro SD card.
+- Each member of the second team will be awarded a [mirco:bit](https://tech.microbit.org/hardware/) computer, along with a 16G micro SD card.
 
 ## Time & Place
 
