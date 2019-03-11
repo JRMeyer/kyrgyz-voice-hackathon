@@ -1,0 +1,71 @@
+#
+# README - The following text is copied from the official guide here:
+#
+# https://coral.withgoogle.com/tutorials/accelerator/
+#
+
+
+
+Get started with the USB Accelerator
+
+The Coral USB Accelerator is a USB device that provides an Edge TPU as a coprocessor for your computer. It accelerates inferencing for your machine learning models when attached to a Linux host computer.
+
+This page is your guide to get started. All you need to do is download our Python library to the host computer where you'll connect the USB Accelerator. Then you can begin running TensorFlow Lite models.
+
+If you want to learn more about the USB Accelerator, see the datasheet.
+
+Requirements
+
+    Any Linux computer with a USB port
+        Debian 6.0 or higher, or any derivative thereof (such as Ubuntu 10.0+)
+        System architecture of either x86_64 or ARM64 with ARMv8 instruction set
+
+And yes, this means Raspberry Pi is supported. However, it must be Raspberry Pi 2/3 Model B/B+ running Raspbian (or another Debian derivative).
+
+Also note that you should use a USB 3.0 port for the best inference speeds (unfortunately, Raspberry Pi has USB 2.0 ports only).
+Setup for Linux or Raspberry Pi
+
+To get started, perform the following steps on your Linux machine or Raspberry Pi that will connect to the Accelerator.
+
+    Install the Edge TPU Python library:
+
+    wget http://storage.googleapis.com/cloud-iot-edge-pretrained-models/edgetpu_api.tar.gz
+
+    tar xzf edgetpu_api.tar.gz
+
+    cd python-tflite-source
+
+    bash ./install.sh
+
+    Plug in the Accelerator using the provided USB 3.0 cable. (If you already plugged it in, remove it and replug it so the just-installed udev rule can take effect.)
+
+Run a model on the Edge TPU
+
+Now that your Accelerator is setup, you can start running TensorFlow Lite models on the Edge TPU.
+
+For example, here's a demo that performs image classification with the parrot image in figure 1:
+
+# From the python-tflite-source directory
+cd edgetpu/
+
+python3 demo/classify_image.py \
+--model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite \
+--label test_data/inat_bird_labels.txt \
+--image test_data/parrot.jpg
+
+Figure 1. parrot.jpg
+
+The results should look like this:
+
+---------------------------
+Ara macao (Scarlet Macaw)
+Score :  0.613281
+---------------------------
+Platycercus elegans (Crimson Rosella)
+Score :  0.152344
+
+Congrats! You've just performed an inference on the Edge TPU.
+
+This demo uses a Python API we created that makes it easy to perform an image classification or object detection inference on the Edge TPU. To learn more about the API, see the Edge TPU API overview & demos.
+
+For details about how to create compatible TensorFlow Lite models, read TensorFlow Models on the Edge TPU.
