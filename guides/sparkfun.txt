@@ -1,0 +1,365 @@
+# README - all this text is copied and pasted from the official Codelab notebook
+#
+#          https://codelabs.developers.google.com/codelabs/sparkfun-tensorflow/#0
+#
+
+1. Introduction
+
+Machine learning helps developers build software that can understand our world. We can use it to create intelligent tools that make users' lives easier, like the Google Assistant, and fun experiences that let users express their creativity, like Google Pixel's portrait mode.
+
+But often, these experiences require a lot of computation. Machine learning often needs to run on a powerful cloud server, or at least a powerful mobile phone.
+
+With TensorFlow Lite, it's possible to run machine learning inference on tiny, low-powered hardware, like microcontrollers. This means you can build amazing experiences that add intelligence to the smallest devices, bringing machine learning closer to the world around us.
+
+In this codelab, we'll learn to deploy a machine learning model to the SparkFun TensorFlow, a microcontroller designed by Google and SparkFun to help developers experiment with ML on tiny devices.
+What is the SparkFun TensorFlow?
+
+The SparkFun TensorFlow is a microcontroller: a tiny computer on a single circuit board. It has a processor, memory, and I/O hardware that allows it to send and receive digital signals to other devices. It also has four software-controllable LEDs, in your favorite Google colors.
+
+Unlike a computer, a microcontroller doesn't usually run an operating system. Instead, the programs you write run directly on the hardware. You write your code on a computer and download it to the microcontroller via a device called a programmer. We'll hear more about those later.
+
+Microcontrollers are not powerful computers. They have small processors, and not much memory. But because they are designed to be as simple as possible, a microcontroller can use very little energy. Depending on what your program does, the SparkFun TensorFlow can run for weeks on a single coin cell battery!
+What is TensorFlow Lite, and why do ML on a tiny device?
+
+TensorFlow is Google's framework for building and training machine learning models, and TensorFlow Lite is a set of tools for running those models on small, relatively low-powered devices. This could mean mobile phones, and it could mean microcontrollers like the SparkFun TensorFlow.
+
+Microcontrollers are extremely common. They are part of all sorts of household devices: think appliances, cars, and toys. In fact, there are around 30 billion microcontroller-powered devices produced each year. They're cheap, require very little energy, and are very reliable.
+
+By bringing machine learning to tiny microcontrollers, we can boost the intelligence of billions of devices that we use in our lives, without relying on expensive hardware or reliable internet connections. Imagine smart appliances that can adapt to your daily routine, intelligent industrial sensors that understand the difference between problems and normal operation, and magical toys that can help kids learn in fun and delightful ways.
+What you'll build
+
+For this codelab we'll be working with the board's built-in speech detection model, which uses a convolutional neural network to detect the words "yes" and "no" being spoken via the board's two microphones.
+
+This codelab is designed to get you started compiling code and deploying it to your device.
+What you'll learn
+
+    Power up the SparkFun TensorFlow and try out its built-in program
+    Compile the same program for the SparkFun TensorFlow on your computer
+    Deploy the program to your device
+
+What you'll need
+
+You will need the following hardware:
+
+    SparkFun TensorFlow board
+    3V 20mm coin cell lithium battery (CR2032)
+    SparkFun USB-C Serial Basic programmer
+    USB cable
+    Linux or MacOS computer with USB ports
+
+You'll also need the following software:
+
+    Git (check if this is installed by typing git at the command line)
+    Python 3 (check if this is installed by typing python3 or python --version at the command line)
+
+
+2. Set up your hardware
+The SparkFun TensorFlow board
+
+First, let's power up your board. To do this, insert a coin cell battery into the battery connector on the back of the board, with the "+" side of the battery facing up. If your board came with a battery already inserted, pull out the plastic tab, and push the battery to ensure it is fully inserted.
+
+Note: The SparkFun TensorFlow board doesn't have an off switch, so you should preserve battery life by taking out the battery when not in use. To do so, use a small implement like a pen, pencil, or tweezers to push the battery out of the connector. Take care not to damage the board or short the two sides of the battery together.
+
+Once you've inserted the battery, the board will wake up and begin listening with its microphones. The blue light should begin to flash. It flashes once for each
+
+The machine learning model on the board is trained to recognize the words "yes" and "no", and to detect the presence and absence of speech. It communicates its results by lighting colored LEDs. The following table shows the meaning of each LED color:
+
+Detection result
+	
+
+LED color
+
+"Yes"
+	
+
+Yellow
+
+"No"
+	
+
+Red
+
+Unknown speech
+	
+
+Green
+
+No speech detected
+	
+
+No LEDs lit
+Give it a try
+
+Try holding the board up to your face and saying "yes" a few times. You should see the yellow LED light up.
+
+If nothing happens when you say "yes", here are some things to try:
+
+    Hold the board around 10" from your mouth
+    Avoid excessive background noise
+    Repeat "yes" several times in quick succession
+    Ensure the battery is connected with the "+" side facing up (if the battery is connected, the blue light should be flashing).
+
+
+
+3. Set up your software
+
+Now that you've tested your board's built-in speech detection model, we're going to download the source code for this program and build it. The program is written in C++, so it must be compiled into a binary before being downloaded onto the board. A binary is a file that contains the program in a form that can be run directly by the SparkFun TensorFlow hardware.
+
+The following instructions are written for MacOS or Linux. If you're using Windows, skip ahead to the Set up your software (Windows) section.
+Download the TensorFlow repo
+
+The code is available in the TensorFlow repository on GitHub, in the following location:
+
+https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/experimental/micro
+
+To download the code, open a terminal on your computer and change to a directory where you usually store coding projects. If you can't think of a good place, change to your home directory by entering cd ~.
+
+Once you're in the appropriate directory, enter the following command to download the TensorFlow repository:
+
+git clone https://github.com/tensorflow/tensorflow.git
+
+Next, enter the directory that was created in the previous step.
+
+cd tensorflow
+
+Download C++ dependencies and run tests
+
+Run the following script to download the dependencies we'll need to build this project.
+
+tensorflow/lite/experimental/micro/tools/make/download_dependencies.sh
+
+The script will take a while to run. You'll eventually see the following:
+
+download_dependencies.sh completed successfully.
+
+Next, run the following command to build and test TensorFlow Lite's microcontroller library. This will help us know we have the correct dependencies.
+
+make -f tensorflow/lite/experimental/micro/tools/make/Makefile test
+
+When the library has finished building and the tests have successfully run, you should see the following output:
+
+~~~ALL TESTS PASSED~~~
+
+Download Python dependencies
+
+We'll be using Python 3 to prepare our binary and flash it to the device. The Python scripts depend on certain libraries being available.
+
+Run the following command to use pip to install these dependencies:
+
+pip3 install pycrypto pyserial
+
+Note: Depending on how your system is configured, you might have to use another command in order to install the dependencies. For example, if you've installed Python 3 on MacOS using Homebrew, you might have to use pip3 instead of pip.
+
+
+4. Build and flash the binary
+What is flashing?
+
+The SparkFun TensorFlow stores the program it is currently running in its 512 kilobytes of flash memory. If we want the board to run a new program, we have to send it to the board, which will store it in flash memory, overwriting any program that was previously saved.
+
+This process is called "flashing", and we'll use it to send our program to the board. But first we need to build the binary!
+Build the binary
+
+First, if you're using MacOS, we'll need to run the following command. If you're using Linux, you don't need to do this.
+
+PATH=tensorflow/lite/experimental/micro/tools/make/downloads/gcc_embedded/bin/:$PATH
+
+Next, initiate the build process, issue the following command.
+
+make -f tensorflow/lite/experimental/micro/tools/make/Makefile TARGET=sparkfun_edge micro_speech_bin
+
+If the build works successfully, the final line of the output should appear as follows:
+
+arm-none-eabi-objcopy tensorflow/lite/experimental/micro/tools/make/gen/sparkfun_edge_cortex-m4/bin/micro_speech tensorflow/lite/experimental/micro/tools/make/gen/sparkfun_edge_cortex-m4/bin/micro_speech.bin -O binary
+
+To confirm that the binary was successfully created, run the following command:
+
+test -f tensorflow/lite/experimental/micro/tools/make/gen/sparkfun_edge_cortex-m4/bin/micro_speech.bin; if [ $? -eq 0 ]; then echo "Binary was successfully created"; else echo "Binary is missing"; fi
+
+You should see Binary was successfully created printed to the console!
+
+If you see Binary is missing, there was a problem with the build process that will require debugging.
+Prepare the binary
+
+First, we'll run a script that will adapt our binary so it can be downloaded to the SparkFun TensorFlow.
+
+Enter the following commands:
+
+cp tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/keys_info0.py tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/keys_info.py
+
+python3 tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/create_cust_image_blob.py --bin tensorflow/lite/experimental/micro/tools/make/gen/sparkfun_edge_cortex-m4/bin/micro_speech.bin --load-address 0xC000 --magic-num 0xCB -o main_nonsecure_ota --version 0x0
+
+This will create the file main_nonsecure_ota.bin. We'll now run another command to create a final version of the file:
+
+python3 tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/create_cust_wireupdate_blob.py --load-address 0x20000 --bin main_nonsecure_ota.bin -i 6 -o main_nonsecure_wire --options 0x1
+
+You should now have a file called main_nonsecure_wire.bin. This is the file we'll be flashing to the device.
+Attach the programmer to the board
+
+To download new programs to the board, we'll be using the SparkFun USB-C Serial Basic serial programmer. This device allows your computer to communicate with the microcontroller via USB.
+
+To attach this device to your board, perform the following steps:
+
+    Locate the six pin header on the side of the SparkFun TensorFlow.
+    Plug the SparkFun USB-C Serial Basic into these pins, ensuring the pins labelled "BLK" and "GRN" on each device are lined up correctly.
+
+Attach the programmer to your computer
+
+We'll be connecting the board to your computer via USB. To program the board, we'll need to know the name that your computer gives the device. The best way of doing this is to list all the computer's devices before and after attaching it, and look to see which device is new.
+
+Before attaching the device via USB, run the following command:
+
+If you are using MacOS: ls /dev/cu*
+If you are using Linux: ls /dev/tty*
+
+This should output a list of attached devices that looks something like the following:
+
+/dev/cu.Bluetooth-Incoming-Port        /dev/cu.MALS                        /dev/cu.SOC
+
+Now, connect the programmer to your computer's USB port. Enter the following command again:
+
+If you are using MacOS: ls /dev/cu*
+If you are using Linux: ls /dev/tty*
+
+You should see an extra item in the output, as in the example below. Your new item may have a different name. This new item is the name of the device.
+
+/dev/cu.Bluetooth-Incoming-Port        /dev/cu.MALS                        /dev/cu.SOC        /dev/cu.usbserial-1450
+
+This name is used to refer to the device. However, it may change depending on which USB port the programmer is attached to, so if you remove and reattach the USB from the computer then you may have to look up its name again.
+Modify the script that flashes the board
+
+The script we'll be using to flash the board has a minor issue that can be fixed by adding two lines of code.
+
+With a text editor, open the following file:
+
+tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/uart_wired_update.py
+
+Locate the code around line 35, which looks like the following:
+
+    with serial.Serial(args.port, args.baud, timeout=12) as ser:
+        connect_device(ser)
+
+Update the code so it looks exactly as follows, making sure the indentation is correct:
+
+    with serial.Serial(args.port, args.baud, timeout=12) as ser:
+        import time
+        time.sleep(0.25)
+        connect_device(ser)
+
+Finally, save the file!
+Run the script to flash your board
+
+To flash the board, we have to put it into a special "bootloader" state that prepares it to receive the new binary. We'll then run a script to send the binary to the board.
+
+First, paste the following command into your terminal, substituting DEVICENAME with your programmer device's name from the previous sections. However, do not hit enter yet!
+
+python3 tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/uart_wired_update.py -b 115200 DEVICENAME -r 1 -f main_nonsecure_wire.bin -i 6
+
+Now, we'll reset the board into its bootloader state and flash the board!
+
+You'll need to be familiar with the following buttons:
+
+Perform the following steps:
+
+    Ensure your board is connected to the programmer, and the entire thing is connected to your computer via USB.
+    On the board, hold the button marked 14. Keep holding it!
+    Still holding the button marked 14, click the button marked RST to reset the board.
+    Hit enter on your computer to run the script. Keep on holding button 14!
+
+You should now see something like the following appearing on-screen:
+
+Connecting with Corvette over serial port /dev/cu.usbserial-1440...
+Sending Hello.
+Received response for Hello
+Received Status
+length =  0x58
+version =  0x3
+Max Storage =  0x4ffa0
+Status =  0x2
+State =  0x7
+AMInfo =
+0x1
+0xff2da3ff
+0x55fff
+0x1
+0x49f40003
+0xffffffff
+[...lots more 0xffffffff...]
+Sending OTA Descriptor =  0xfe000
+Sending Update Command.
+number of updates needed =  1
+Sending block of size  0x158b0  from  0x0  to  0x158b0
+Sending Data Packet of length  8180
+Sending Data Packet of length  8180
+[...lots more Sending Data Packet of length  8180...]
+
+Keep holding button 14 until you see Sending Data Packet of length 8180!
+
+The program will continue to print lines on the terminal. It will eventually look something like the following:
+
+[...lots more Sending Data Packet of length  8180...]
+Sending Data Packet of length  8180
+Sending Data Packet of length  6440
+Sending Reset Command.
+No response for command 0x00000006
+received bytes  19
+['0xb7', '0xa5', '0x61', '0x81', '0x7', '0x0', '0x14', '0x0', '0x6', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0']
+Traceback (most recent call last):
+  File "tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/uart_wired_update.py", line 336, in <module>
+    main()
+  File "tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/uart_wired_update.py", line 38, in main
+    connect_device(ser)
+  File "tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/uart_wired_update.py", line 172, in connect_device
+    send_ackd_command(resetmsg, ser)
+  File "tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/uart_wired_update.py", line 191, in send_ackd_command
+    response = send_command(command, 20, ser)
+  File "tensorflow/lite/experimental/micro/tools/make/downloads/AmbiqSuite-Rel2.0.0/tools/apollo3_scripts/uart_wired_update.py", line 235, in send_command
+    raise NoResponseError
+__main__.NoResponseError
+
+Despite the error message, this generally indicates a successful flashing!
+Verify flashing was successful
+
+Once your board has been successfully flashed, it will reset. The program we've just flashed onto the board will blink the blue LED, so if the blue LED starts blinking, flashing was successful.
+
+To confirm this, test the board by saying "yes" until the yellow LED lights up!
+What if it didn't work?
+
+Here are some possible issues and how to debug them:
+
+Problem: The flashing script hangs for a while at "Sending Hello." and then prints an error.
+
+Solution: You need to hold down the button marked 14 while running the script. Hold down button 14, hit the RST button, then run the script, while holding the button marked 14 the whole time.
+
+Problem: After flashing, none of the LEDs are coming on.
+
+Solution: Try hitting the RST button, disconnecting the board from the programmer, and removing and replacing the battery. If none of these work, try flashing the board again.
+
+Problem: The blue LED is lighting up, but it's very dim.
+
+Solution: The battery is running low and needs to be replaced. The board can also be powered by the programmer, so if your battery has run out, just keep it plugged in to the programmer and use it as normal.
+
+5. Next steps
+
+Now that you know how to build and flash your SparkFun TensorFlow, you can start playing with the code and deploying it to your device to see the results.
+Read and modify the code
+
+A good place to start reading the code is the following file:
+
+tensorflow/lite/experimental/micro/examples/micro_speech/sparkfun_edge/command_responder.cc
+
+You can see the file on GitHub here.
+
+The method in this file is called when a voice command is detected. Try modifying the behavior - can you make a different LED turn on?
+Rebuild and flash
+
+Once you've made code changes, follow the steps earlier in the codelab to build the project, prepare the binary, and flash it to your device.
+Further reading
+
+We hope you've enjoyed this brief introduction to development with the SparkFun TensorFlow!
+
+Here are some good places to learn more:
+
+    TensorFlow Lite for Microcontrollers on GitHub
+    How the speech detection model works
+    Creating your own model
+
