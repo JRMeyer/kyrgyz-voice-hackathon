@@ -5,13 +5,6 @@
 
 The goal of the event is to spark innovation on Voice-enabled technologies for the Kyrgyz language. Over the course of four days, teams will compete and collaborate to create working solutions to the application of their choosing.
 
-## Prizes
-
-This hackathon is a competition, and the top two teams will be awarded prizes. Teams should not have more than five people.
-
-- Each member of the top team will be awarded a [Raspberry Pi 3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), along with a 16G micro SD card.
-- Each member of the second team will be awarded a [mirco:bit](https://tech.microbit.org/hardware/) computer, along with a 16G micro SD card.
-
 ## Time & Place
 
 March 12-15, 2019 -- Bishkek, Kyrgyzstan
@@ -28,6 +21,14 @@ We will focus on the following three broad subjects related to Voice technology:
 1. Core technologies such as Automatic Speech Recognition and Speech Synthesis
 2. Applied technologies such as Voice Assistants and IoT connected devices
 3. Datasets (i.e. spoken corpora) required to build these technologies
+
+
+## Prizes
+
+This hackathon is a competition, and the top two teams will be awarded prizes. Teams should not have more than five people.
+
+- Each member of the top team will be awarded a [Raspberry Pi 3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), along with a 16G micro SD card.
+- Each member of the second team will be awarded a [mirco:bit](https://tech.microbit.org/hardware/) computer, along with a 16G micro SD card.
 
 ## Open
 
