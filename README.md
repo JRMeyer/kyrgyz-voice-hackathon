@@ -36,6 +36,9 @@ The organizers of this event firmly believe in Open Technology. This includes Op
 
 This Github reposity serves as the main hub of information, code, and presentation slides for the event. Unless stated otherwise, the contents of this repository are licensed under the [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
 
+## Code of Conduct
+
+Be excellent to each other. Read the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Sponsors & Organizers
 
