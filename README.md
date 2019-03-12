@@ -59,5 +59,5 @@ We thank our gracious sponsors and organizers, without whom this event would not
 - Common Voice: [https://voice.mozilla.org](https://voice.mozilla.org)
 - DeepSpeech: [https://github.com/mozilla/DeepSpeech](https://github.com/mozilla/DeepSpeech)
 - Common Voice Sentence Collector: [https://common-voice.github.io/sentence-collector/#/](https://common-voice.github.io/sentence-collector/#/)
-
+- Pontoon: [https://pontoon.mozilla.org](https://pontoon.mozilla.org)
 
