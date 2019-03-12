@@ -36,9 +36,9 @@ This hackathon is a competition, and the top two teams will be awarded prizes. T
 
 The top three contributors to the data collection sprint will receive prizes:
 
-- 1st prize: Mycroft Mk. I
-- 2nd prize: Coral USB TPU
-- 3rd prize: 
+- 1st prize: [Mycroft Mk. I](https://mycroft.ai/)
+- 2nd prize: [Coral TPU Accelerator](https://coral.withgoogle.com/products/accelerator/)
+- 3rd prize: [Sparkfun Edge](https://www.sparkfun.com/products/15170)
 
 ## Open
 
