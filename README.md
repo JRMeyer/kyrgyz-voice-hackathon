@@ -53,3 +53,11 @@ Be excellent to each other. Read the [Code of Conduct](CODE_OF_CONDUCT.md).
 ## Sponsors & Organizers
 
 We thank our gracious sponsors and organizers, without whom this event would not have been possible. The Kyrgyz Voice Technology Hackathon is co-sponsored by [Mozilla](https://www.mozilla.org), the [AUCA Center for Teaching, Learning, and Technology](https://auca.kg/en/ctlt/), [Ololohaus](https://ololohaus.com/), and [Эл-Сөздүк](https://el-sozduk.kg/).
+
+## Links
+
+- Common Voice: [https://voice.mozilla.org](https://voice.mozilla.org)
+- DeepSpeech: [https://github.com/mozilla/DeepSpeech](https://github.com/mozilla/DeepSpeech)
+- Common Voice Sentence Collector: [https://common-voice.github.io/sentence-collector/#/](https://common-voice.github.io/sentence-collector/#/)
+
+
