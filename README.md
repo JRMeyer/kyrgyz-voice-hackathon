@@ -25,10 +25,20 @@ We will focus on the following three broad subjects related to Voice technology:
 
 ## Prizes
 
+### Hackathon
+
 This hackathon is a competition, and the top two teams will be awarded prizes. Teams should not have more than five people.
 
 - Each member of the top team will be awarded a [Raspberry Pi 3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), along with a 16G micro SD card.
 - Each member of the second team will be awarded a [mirco:bit](https://tech.microbit.org/hardware/) computer, along with a 16G micro SD card.
+
+### Data collection sprint
+
+The top three contributors to the data collection sprint will receive prizes:
+
+- 1st prize: Mycroft Mk. I
+- 2nd prize: Coral USB TPU
+- 3rd prize: 
 
 ## Open
 
