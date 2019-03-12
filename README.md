@@ -40,6 +40,15 @@ The top three contributors to the data collection sprint will receive prizes:
 - 2nd prize: [Coral TPU Accelerator](https://coral.withgoogle.com/products/accelerator/)
 - 3rd prize: [Sparkfun Edge](https://www.sparkfun.com/products/15170)
 
+#### How to participate
+
+1. Make a profile
+2. Screenshot your dashboard
+3. Send the screenshot in an email to `ctlt@auca.kg`
+4. At the end of the hackathon take another screenshot and send it to the same page.
+
+The screenshots should show how many minutes you have donated before and after.
+
 ## Open
 
 The organizers of this event firmly believe in Open Technology. This includes Open Source code, as well as Open Licensed Data.
