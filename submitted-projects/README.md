@@ -5,7 +5,7 @@
 
 This Telegram bot will return to the user technical definitions in Kyrgyz, given a search term in Kyrgyz, Russian, or English.
 
-Watch the video [here](submitted-projects/sayabil.mp4)!
+Watch the video [here](sayabil.mp4)!
 
 [`https://github.com/baielvegas/SayaBilBot`](https://github.com/baielvegas/SayaBilBot)
 
